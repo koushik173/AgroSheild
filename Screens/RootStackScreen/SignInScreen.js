@@ -8,19 +8,26 @@ import {
   StatusBar,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Button} from 'react-native-paper';
+import { AuthContext } from '../../Components/AuthProvider';
 
-const SignUpScreen = ({navigation}) => {
+const SignInScreen = ({navigation}) => {
+
+  const {Login} = useContext(AuthContext); 
   const [data, setData] = useState({
     email: '',
     passward: '',
     check_textInputChange: false,
     secureTextEntry: true,
   });
+
+  const handleLogin=(userData)=>{
+    Login(userData.email, userData.passward);
+  }
 
   const textInputChange = val => {
     if (val.length != 0) {
@@ -56,6 +63,8 @@ const SignUpScreen = ({navigation}) => {
       <StatusBar backgroundColor="#009387" barStyle="light-content" />
       <View style={styles.header}>
         <Text style={styles.text_header}>Welcome to AgroSheild!</Text>
+        <Text style={styles.text_header}>Sign in</Text>
+
       </View>
       <Animatable.View style={styles.footer} animation="fadeInUpBig"> 
         <Text style={styles.text_footer}>Email</Text>
@@ -116,25 +125,27 @@ const SignUpScreen = ({navigation}) => {
         </View>
 
         <View>
-          <LinearGradient
-            colors={['#08d4cd', '#01ab9d']}
-            style={{
-              width: '100%',
-              height: 50,
-              borderRadius: 10,
-              marginTop: 20,
-            }}>
-            <Text
+          <TouchableOpacity onPress={()=>handleLogin(data)}>
+            <LinearGradient
+              colors={['#08d4cd', '#01ab9d']}
               style={{
-                textAlign: 'center',
-                fontWeight: 'bold',
-                color: 'white',
-                fontSize: 25,
-                marginTop: 7,
+                width: '100%',
+                height: 50,
+                borderRadius: 10,
+                marginTop: 20,
               }}>
-              Sign In
-            </Text>
-          </LinearGradient>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontWeight: 'bold',
+                  color: 'white',
+                  fontSize: 25,
+                  marginTop: 7,
+                }}>
+                Login
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
 
           <View style={{flexDirection: 'row', marginTop: 10, gap: 5}}>
             <Text style={{fontSize: 15}}>New To AgroSheild? </Text>
@@ -185,7 +196,7 @@ const SignUpScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5dc02',
+    backgroundColor: '#009387',
   },
   header: {
     flex: 1,
@@ -202,7 +213,7 @@ const styles = StyleSheet.create({
     paddingVertical: 30,
   },
   text_header: {
-    color: '#FF8B02',
+    color: 'white',
     fontWeight: 'bold',
     fontSize: 30,
   },
@@ -239,4 +250,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUpScreen;
+export default SignInScreen;

@@ -22,8 +22,8 @@ const SplachScreen = ({navigation}) => {
         />
       </View>
       <Animatable.View style={styles.footer} animation="fadeInUpBig">
-        <Text style={styles.title}>Stay Connected With US!</Text>
-        <Text style={styles.text}>Sign in with account</Text>
+        <Text style={styles.title}>Stay Connected With AgroSheild!</Text>
+        <Text style={styles.text}>Get Fresh Food, Stay Safe, Stay Healthy!</Text>
 
         <View style={{marginTop: 15}}>
           <TouchableOpacity onPress={() => navigation.navigate('SignInScreen')}>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   text: {
-    color: 'grey',
+    color: 'black',
     marginTop: 10,
   },
   signIn: {
